@@ -1,4 +1,526 @@
-1. Click "uploading an existing file" (green area in your screenshot)
-2. Drag your index.html file OR click "choose your files"
-3. Type ANY commit message like "Add MadhuRaj website"
-4. Click "Commit changes" (green button)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MadhuRaj Beauty & Skin Care Products | Chennai</title>
+  <meta name="description" content="Chennai beauty shop for skincare, cosmetics, stationery, gifts, xerox & lamination. Affordable quality near Bus Stand, New Kaniyamman Nagar." />
+  <style>
+    :root {
+      --primary: #ff9933;
+      --secondary: #008080;
+      --accent: #fff3e0;
+      --text: #333;
+      --bg: #fffaf5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: opacity 0.3s;
+    }
+    nav a:hover { opacity: 0.8; }
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 4rem 2rem;
+      align-items: center;
+      background: var(--accent);
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 280px;
+      padding-right: 2rem;
+    }
+    .hero-text h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    .hero-text p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    .hero-text button {
+      padding: 1rem 2rem;
+      border: none;
+      background: var(--secondary);
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+      margin-right: 1rem;
+    }
+    .hero-text button:hover { background: #006666; }
+    .hero-image {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      color: var(--primary);
+    }
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .filters select, .filters input {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    .product-card:hover { 
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .product-card h3 { 
+      font-size: 1.3rem; 
+      margin-bottom: 0.5rem; 
+    }
+    .product-card .price { 
+      font-size: 1.8rem; 
+      color: var(--secondary); 
+      font-weight: bold; 
+      margin-bottom: 1rem;
+    }
+    .product-card button {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: scale(1.05); }
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery-item img:hover { transform: scale(1.05); }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .cart-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .close-cart { 
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #999;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .total { font-size: 1.5rem; font-weight: bold; text-align: right; margin-top: 1rem; }
+    .promo-banner {
+      background: linear-gradient(135deg, #ff69b4, #ffd700);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin: 1rem 2rem;
+      border-radius: 8px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 1rem; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text { padding-right: 0; order: 2; }
+      .hero-image { order: 1; }
+      .filters { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="promo-banner">
+    🎉 Pongal Special: Buy 2 Get 1 Free on Cosmetics & Gifts! Limited Time. Shop Now! [cite:11]
+  </div>
+
+  <header>
+    <h1>🧴 MadhuRaj Beauty & M.R Store</h1> <!-- Added rename hint [cite:12] -->
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Shop</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cartCount" class="cart-count">0</span></div>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h2>அழகிய மின்னல் MadhuRaj-ல! ✨</h2> <!-- Bilingual Tamil [cite:13] -->
+      <p>Skincare, Cosmetics, Stationery, Gifts, Jewellery, Xerox & Lamination in Chennai. Near Bus Stand, New Kaniyamman Nagar.</p>
+      <button onclick="scrollTo('products')">Shop Now</button>
+      <button onclick="scrollTo('services')">Our Services</button>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1625772299848-361b803ffa18?w=300&fit=crop" alt="Beauty Model" loading="lazy">
+    </div>
+  </section>
+
+  <section id="products" class="section">
+    <h2>Featured Products</h2>
+    <div class="filters">
+      <select id="categoryFilter" onchange="filterProducts()">
+        <option>All</option>
+        <option>Skincare</option>
+        <option>Cosmetics</option>
+        <option>Stationery</option>
+        <option>Gifts</option>
+      </select>
+      <input type="range" id="priceFilter" min="0" max="1000" value="1000" oninput="updatePrice(this.value)" />
+      <span id="priceValue">₹1000</span>
+    </div>
+    <div id="productsGrid" class="products-grid">
+      <!-- Products populated by JS -->
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <h2>Quick Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <h3>Xerox & Printing</h3>
+        <p>Instant A4 to posters, color/B&W. ₹1/page.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Lamination</h3>
+        <p>Cards, docs. From ₹10/sheet. Walk-in ready.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎁</div>
+        <h3>Gift Wrapping & Hampers</h3>
+        <p>Festive custom packs. Jewellery too!</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Mobile Recharge / Money Transfer</h3> <!-- From memory [cite:12] -->
+        <p>Easy & secure. All networks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <h2>Shop Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588740127726-435fedd7d477?w=300&h=200&fit=crop" alt="Shop Interior" onclick="openModal(this.src)"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1574169208507-84376144848b?w=300&h=200&fit=crop" alt="Products" onclick="openModal(this.src)"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300&h=200&fit=crop" alt="Beauty Items" onclick="openModal(this.src)"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop" alt="Services" onclick="openModal(this.src)"></div>
+    </div>
+    <div id="imageModal" class="cart-modal" onclick="closeModal()">
+      <img id="modalImg" style="max-width:90%; max-height:90%;">
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form class="contact-form" onsubmit="submitForm(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="tel" placeholder="Phone (98xxx-xxxxx)" required>
+      <input type="email" placeholder="Email">
+      <textarea rows="5" placeholder="Message (Order? Service? Enquiry?)"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p style="text-align:center; margin-top:2rem; font-size:1.2rem;">
+      📍 New Kaniyamman Nagar, Near Bus Stand, Chennai<br>
+      📞 8939664650 | 🕒 9AM-9PM Daily
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 MadhuRaj Beauty & M.R Store | All Rights Reserved | Proudly Chennai Local</p>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="cart-modal" onclick="toggleCart()">
+    <div class="cart-content" onclick="event.stopPropagation()">
+      <span class="close-cart" onclick="toggleCart()">&times;</span>
+      <h2>Your Cart</h2>
+      <div id="cartItems"></div>
+      <div class="total" id="cartTotal">Total: ₹0</div>
+      <button onclick="checkout()" style="width:100%; margin-top:1rem; background:var(--primary);">Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    // Sample Products
+    const products = [
+      { id:1, name:'Himalaya Neem Face Wash', price:199, category:'Skincare', img:'https://via.placeholder.com/280x220/ff9933/fff?text=Neem+Wash' },
+      { id:2, name:'Lakme Matte Lipstick', price:299, category:'Cosmetics', img:'https://via.placeholder.com/280x220/008080/fff?text=Lipstick' },
+      { id:3, name:'Classmate Notebook', price:49, category:'Stationery', img:'https://via.placeholder.com/280x220/ff9933/fff?text=Notebook' },
+      { id:4, name:'Gift Hamper', price:499, category:'Gifts', img:'https://via.placeholder.com/280x220/008080/fff?text=Hamper' },
+      { id:5, name:'Earrings Set', price:150, category:'Jewellery', img:'https://via.placeholder.com/280x220/ff9933/fff?text=Earrings' }, // [cite:12]
+      { id:6, name:'Parlour Supply Kit', price:799, category:'Skincare', img:'https://via.placeholder.com/280x220/008080/fff?text=Kit' }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Render Products
+    function renderProducts(filtered = products) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card" data-category="${p.category}">
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          <h3>${p.name}</h3>
+          <div class="price">₹${p.price}</div>
+          <button onclick="addToCart(${p.id})">Add to Cart</button>
+        </div>
+      `).join('');
+    }
+
+    // Cart Functions
+    function addToCart(id) {
+      const prod = products.find(p => p.id === id);
+      const existing = cart.find(item => item.id === id);
+      if (existing) existing.qty += 1;
+      else cart.push({...prod, qty:1});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+    }
+
+    function toggleCart() {
+      const modal = document.getElementById('cartModal');
+      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+      if (modal.style.display === 'flex') renderCart();
+    }
+
+    function renderCart() {
+      const items = document.getElementById('cartItems');
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      items.innerHTML = cart.length ? cart.map(item => `
+        <div class="cart-item">
+          <span>${item.name} x${item.qty}</span>
+          <span>₹${item.price * item.qty}</span>
+        </div>
+      `).join('') : '<p>Cart empty</p>';
+      document.getElementById('cartTotal').textContent = `Total: ₹${total}`;
+    }
+
+    function checkout() {
+      alert('Order placed! Total: ₹' + cart.reduce((sum, item) => sum + (item.price * item.qty), 0));
+      cart = [];
+      localStorage.removeItem('cart');
+      updateCartCount();
+      toggleCart();
+    }
+
+    // Filters
+    function filterProducts() {
+      const cat = document.getElementById('categoryFilter').value;
+      const price = parseInt(document.getElementById('priceFilter').value);
+      let filtered = products.filter(p => 
+        (cat === 'All' || p.category === cat) && p.price <= price
+      );
+      renderProducts(filtered);
+    }
+
+    function updatePrice(val) {
+      document.getElementById('priceValue').textContent = '₹' + val;
+      filterProducts();
+    }
+
+    // Smooth Scroll
+    function scrollTo(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Form & Modals
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Thanks! We\'ll call you at 8939664650.');
+      e.target.reset();
+    }
+
+    function openModal(src) {
+      document.getElementById('imageModal').style.display = 'flex';
+      document.getElementById('modalImg').src = src;
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // Init
+    renderProducts();
+    updateCartCount();
+  </script>
+</body>
+</html>
